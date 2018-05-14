@@ -43,7 +43,7 @@ class Player:
                     if is_there_card_under_ten(cards_in_hand):
                         return game_state.big_blind * 10
                     else:
-                        return game_state.big_blind * 2
+                        return game_state.current_buy_in * 2
                 elif is_card_with_rank(cards_in_hand, CardDetails.Ranks.RANK_ACE):
                     if is_there_card_under_ten(cards_in_hand):
                         return game_state.current_buy_in * 2
