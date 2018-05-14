@@ -9,49 +9,52 @@ def am_i_big_blind_or_small_blind(game_state):
     return False
 
 
-def get_all_in_amount(player):
-    return player['stack']
+def get_count_of_active_players(game_state):
+    count = 0
+    for player in game_state.players:
+        if player.status == PlayerDetails.Statuses.STATUS_ACTIVE:
+            count += 1
+
+    return count
 
 
 class Player:
-    VERSION = "1.01b"
+    VERSION = "2.01b beta"
 
     def betRequest(self, game_state):
         try:
             game_state = GameState(game_state)
             cards_in_hand = game_state.own_player.hole_cards
 
-            if game_state.pot <= game_state.big_blind * 4:
-                if are_card_ranks_equal(cards_in_hand):
+            if get_count_of_active_players(game_state) > 2:
+                if game_state.pot <= game_state.big_blind * 4:
+                    if are_card_ranks_equal(cards_in_hand):
                         if is_there_card_under_ten(cards_in_hand):
                             return game_state.big_blind * 10
                         else:
                             return game_state.big_blind * 2
 
-                elif is_card_with_rank(cards_in_hand, CardDetails.Ranks.RANK_ACE):
-                    if is_there_card_under_ten(cards_in_hand):
-                        return game_state.big_blind * 10
-                    else:
-                        return game_state.big_blind * 2
+                    elif is_card_with_rank(cards_in_hand, CardDetails.Ranks.RANK_ACE):
+                        return game_state.big_blind
 
-                elif am_i_big_blind_or_small_blind(game_state):
-                    if game_state.current_buy_in < game_state.big_blind * 3:
-                        return game_state.current_buy_in
+                    elif am_i_big_blind_or_small_blind(game_state):
+                        if game_state.current_buy_in < game_state.big_blind * 3:
+                            return game_state.current_buy_in
 
-            elif game_state.pot > game_state.big_blind * 4:
-                if are_card_ranks_equal(cards_in_hand):
-                    if is_there_card_under_ten(cards_in_hand):
-                        return game_state.big_blind * 10
-                    else:
-                        return game_state.current_buy_in * 2
-                elif is_card_with_rank(cards_in_hand, CardDetails.Ranks.RANK_ACE):
-                    if is_there_card_under_ten(cards_in_hand):
-                        return game_state.current_buy_in * 2
-                    else:
+                elif game_state.pot > game_state.big_blind * 4:
+                    if are_card_ranks_equal(cards_in_hand):
+                        if is_there_card_under_ten(cards_in_hand):
+                            return game_state.big_blind * 10
+                        else:
+                            return game_state.current_buy_in * 2
+                    elif is_card_with_rank(cards_in_hand, CardDetails.Ranks.RANK_ACE):
                         return game_state.current_buy_in
-                elif am_i_big_blind_or_small_blind(game_state):
-                    if game_state.current_buy_in < game_state.big_blind * 3:
-                        return game_state.current_buy_in
+                    elif am_i_big_blind_or_small_blind(game_state):
+                        if game_state.current_buy_in < game_state.big_blind * 3:
+                            return game_state.current_buy_in
+            else:
+                if is_card_with_rank(cards_in_hand, CardDetails.Ranks.RANK_ACE) or are_card_ranks_equal(cards_in_hand):
+                    return game_state.own_player.stack
 
         except:
             print "Unexpected error: "
