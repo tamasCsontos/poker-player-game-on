@@ -16,7 +16,7 @@ class Player:
     VERSION = "Default Python folding player"
 
     def betRequest(self, game_state):
-        print "GAME_STATE:" + game_state
+        print "GAME_STATE:" + str(game_state)
         own_player = get_own_player(game_state["players"])
         hole_cards = own_player["hole_cards"]
 
