@@ -63,7 +63,10 @@ class Player:
                         if game_state.current_buy_in < game_state.big_blind * 3:
                             return game_state.current_buy_in
             else:
-                if is_card_with_rank(cards_in_hand, CardDetails.Ranks.RANK_ACE) or are_card_ranks_equal(cards_in_hand):
+                if game_state.current_buy_in > int(game_state.own_player.stack / 2):
+                    return 0
+                elif is_card_with_rank(cards_in_hand, CardDetails.Ranks.RANK_ACE) or are_card_ranks_equal(cards_in_hand):
+                    print cards_in_hand[0].rank + " " + cards_in_hand[1].rank
                     return game_state.own_player.stack
 
         except:
