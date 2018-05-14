@@ -54,7 +54,7 @@ class Player:
                         return game_state.current_buy_in
 
         except:
-            print "Unexpected error: ", sys.exc_info()[0]
+            print "Unexpected error: "
 
         return 0
 
