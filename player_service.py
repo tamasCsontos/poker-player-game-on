@@ -29,25 +29,22 @@ class PlayerService(BaseHTTPServer.BaseHTTPRequestHandler):
 
         action = postvars['action'][0]
 
-
         if 'game_state' in postvars:
             game_state = json.loads(postvars['game_state'][0])
-            print(json.loads(postvars['game_state'][5]))
         else:
             game_state = {}
-
 
 
         response = ''
         if action == 'bet_request':
             response = Player().betRequest(game_state)
-            print(json.loads(postvars['game_state'][1]))
         elif action == 'showdown':
             Player().showdown(game_state)
         elif action == 'version':
             response = Player.VERSION
 
         self.wfile.write(response)
+
 
 if __name__ == '__main__':
     server_class = BaseHTTPServer.HTTPServer

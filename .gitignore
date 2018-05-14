@@ -38,3 +38,5 @@ nosetests.xml
 .idea
 venv
 .cache
+tests/.cache
+helper/.cache
