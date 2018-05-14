@@ -18,13 +18,23 @@ def get_count_of_active_players(game_state):
     return count
 
 
+def is_there_card_in_community_cards(game_state):
+    b1 = is_card_with_rank(game_state.community_cards, game_state.own_player.hole_cards[0].rank)
+    b2 = is_card_with_rank(game_state.community_cards, game_state.own_player.hole_cards[1].rank)
+    return b1 or b2
+
+
 class Player:
-    VERSION = "2.01b beta"
+    VERSION = "2.01002b beta"
 
     def betRequest(self, game_state):
         try:
             game_state = GameState(game_state)
             cards_in_hand = game_state.own_player.hole_cards
+
+            if len(game_state.community_cards) and game_state.community_cards is not None:
+                if is_there_card_in_community_cards(game_state):
+                    return game_state.current_buy_in * 3
 
             if get_count_of_active_players(game_state) > 2:
                 if game_state.pot <= game_state.big_blind * 4:
