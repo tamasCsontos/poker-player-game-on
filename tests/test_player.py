@@ -19,6 +19,7 @@ def test_get_own_player():
 
     assert player.get_own_player(players) == own_player
 
+
 def test_get_all_in_amount():
     playerDetails = {
         'name': 'Game On',

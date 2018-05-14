@@ -3,7 +3,7 @@ def are_card_ranks_equal(cards):
     if len(cards) == 0:
         return False
 
-    card_rank = cards[0]
+    card_rank = cards[0]['rank']
 
     for card in cards:
         if card['rank'] != card_rank:
