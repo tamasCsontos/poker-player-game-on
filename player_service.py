@@ -33,7 +33,7 @@ class PlayerService(BaseHTTPServer.BaseHTTPRequestHandler):
             game_state = json.loads(postvars['game_state'][0])
         else:
             game_state = {}
-
+        print("KJAHSKJAHSJKHSJKAHSJKHASJKHJAKSHJKASHJKSHJKAHSJKAHSJKAHSJKAHJKHASJKAHSJKHSJKHASSSSSS")
 
         response = ''
         if action == 'bet_request':
