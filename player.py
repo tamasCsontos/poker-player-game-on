@@ -25,9 +25,10 @@ class Player:
                     return int(own_player['big_blind'])*2
         elif card.is_card_with_rank(hole_cards, "A"):
             if card.is_card_under_ten(hole_cards):
-                return int(own_player['big_blind']) * 10
+                return int(own_player['big_blind'])*10
             else:
-                return int(own_player['big_blind']) * 2
+                return int(own_player['big_blind'])*2
+
         return 0
 
     def showdown(self, game_state):
