@@ -31,14 +31,14 @@ class Player:
         else:
             if card.are_card_ranks_equal(hole_cards):
                     if card.is_card_under_ten(hole_cards):
-                        return int(game_state['current_by_in']) * 2
+                        return int(game_state['current_buy_in']) * 2
                     else:
-                        return int(game_state['current_by_in'])
+                        return int(game_state['current_buy_in'])
             elif card.is_card_with_rank(hole_cards, "A"):
                 if card.is_card_under_ten(hole_cards):
-                    return int(game_state['current_by_in']) * 2
+                    return int(game_state['current_buy_in']) * 2
                 else:
-                    return int(game_state['current_by_in'])
+                    return int(game_state['current_buy_in'])
         return 0
 
     def showdown(self, game_state):
