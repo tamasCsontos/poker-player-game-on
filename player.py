@@ -2,13 +2,13 @@ import card
 
 def am_i_big_blind(game_state):
     #Please test if this gives back if we are the bigblind
-    if game_state['dealer'] == 4:
+    if int(game_state['dealer']) == 4:
         return True
     return False
 
 
 def am_i_small_blind(game_state):
-    if game_state['dealer'] == 5:
+    if int(game_state['dealer']) == 5:
         return True
     return False
 
@@ -24,7 +24,7 @@ def get_all_in_amount(player):
 
 
 class Player:
-    VERSION = "0.1b1223"
+    VERSION = "1.0b"
 
     def betRequest(self, game_state):
         own_player = get_own_player(game_state['players'])
