@@ -47,7 +47,15 @@ class PlayerDetails:
         self.version = get_json_value(json_data, 'version')
         self.stack = get_json_value(json_data, 'stack')
         self.bet = get_json_value(json_data, 'bet')
-        self.hole_cards = [CardDetails(card_json) for card_json in get_json_value(json_data, 'hole_cards')]
+        self.hole_cards = get_json_value(json_data, 'hole_cards')
+
+        if self.hole_cards is not None:
+            self.hole_cards = [
+                CardDetails(card_json_data) for card_json_data in get_json_value(json_data, 'hole_cards')
+            ]
+        else:
+            self.hole_cards = []
+
 
 
 class GameState:
@@ -63,10 +71,22 @@ class GameState:
         self.game_id = get_json_value(json_data, 'game_id')
         self.round = get_json_value(json_data, 'round')
         self.bet_index = get_json_value(json_data, 'bet_index')
+        self.minimum_raise = get_json_value(json_data, 'minimum_raise')
+        self.dealer = get_json_value(json_data, 'dealer')
         self.small_blind = get_json_value(json_data, 'small_blind')
+        self.big_blind = get_json_value(json_data, 'big_blind')
+
+        if self.big_blind is None:
+            self.big_blind = self.small_blind * 2
+
         self.current_buy_in = get_json_value(json_data, 'current_buy_in')
         self.pot = get_json_value(json_data, 'pot')
         self.orbits = get_json_value(json_data, 'orbits')
         self.in_action = get_json_value(json_data, 'in_action')
-        self.players = [PlayerDetails(json_data) for json_data in get_json_value(json_data, 'players')]
+        self.community_cards = [
+            CardDetails(card_json_data) for card_json_data in get_json_value(json_data, 'community_cards')
+        ]
+        self.players = [
+            PlayerDetails(player_json_data) for player_json_data in get_json_value(json_data, 'players')
+        ]
         self.own_player = self._get_own_player()
