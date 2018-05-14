@@ -12,7 +12,7 @@ def am_i_big_blind_or_small_blind(game_state):
 def get_count_of_active_players(game_state):
     count = 0
     for player in game_state.players:
-        if player.status == PlayerDetails.Statuses.STATUS_ACTIVE:
+        if player.status == PlayerDetails.Statuses.STATUS_ACTIVE or player.status == PlayerDetails.Statuses.STATUS_FOLDED:
             count += 1
 
     return count
