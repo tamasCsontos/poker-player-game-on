@@ -64,7 +64,7 @@ class Player:
                             return game_state.current_buy_in
             else:
                 if is_card_with_rank(cards_in_hand, CardDetails.Ranks.RANK_ACE) or are_card_ranks_equal(cards_in_hand):
-                    print cards_in_hand[0].rank + " " + cards_in_hand[1].rank
+                    print "CAAARD:" + cards_in_hand[0].rank + " " + cards_in_hand[1].rank
                     return game_state.own_player.stack
 
         except:
