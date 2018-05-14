@@ -2,9 +2,10 @@ import card
 
 
 def get_own_player(players):
+    print "ASASSAS" + players[0]
     for player in players:
         if player['name'] == 'Game On':
-            print player
+            print "sadasdas" + player
             return player
 
 
