@@ -32,8 +32,7 @@ class PlayerService(BaseHTTPServer.BaseHTTPRequestHandler):
 
         if 'game_state' in postvars:
             game_state = json.loads(postvars['game_state'][0])
-            print("gééésdFS"
-                  "DFLKAEŰFÉLGMADFÉLGMADFÉLMADFÉGMADFÉBMADFÉBM" + json.loads(postvars['game_state'][5]))
+            print(json.loads(postvars['game_state'][5]))
         else:
             game_state = {}
 
