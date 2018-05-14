@@ -1,3 +1,5 @@
+import player
+
 
 def are_card_ranks_equal(cards):
     if len(cards) == 0:

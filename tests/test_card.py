@@ -39,3 +39,4 @@ def test_are_card_ranks_equal():
 
     assert card.are_card_ranks_equal(SAMPLE_CARDS) is False
     assert card.are_card_ranks_equal(equal_cards) is True
+
