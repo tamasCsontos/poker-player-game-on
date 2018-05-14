@@ -1,12 +1,16 @@
 import card
 
+
 def get_own_player(players):
     for player in players:
         if player.name == "Game On":
+            print player
             return player
+
 
 def get_all_in_amount(player):
     return player.stack
+
 
 class Player:
     VERSION = "Default Python folding player"
