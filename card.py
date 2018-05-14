@@ -20,7 +20,6 @@ def is_card_with_rank(cards, rank):
     return False
 
 
-def
 
 def are_card_suit_equal(cards):
     if len(cards) == 0:
