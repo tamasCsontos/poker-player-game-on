@@ -12,7 +12,7 @@ def get_all_in_amount(player):
 
 
 class Player:
-    VERSION = "Default Python folding player"
+    VERSION = "0.01"
 
     def betRequest(self, game_state):
         own_player = get_own_player(game_state['players'])
@@ -20,7 +20,10 @@ class Player:
         print "asdsadasd: " + own_player
 
         if card.are_card_ranks_equal(hole_cards) or card.is_card_with_rank(hole_cards, "A"):
-            return get_all_in_amount(own_player)
+            if card.are_card_ranks_equal(hole_cards):
+                return get_all_in_amount(own_player)
+            else:
+                return get_all_in_amount(own_player)/2
 
         return 0
 
