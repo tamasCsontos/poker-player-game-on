@@ -9,11 +9,7 @@ def test_get_own_player():
     }
 
     players = [
-        {
-            'name': 'Game On',
-            'holt_cards': [],
-            'stack': 500
-        },
+        own_player,
         {
             'name': 'Other On',
             'holt_cards': [],
@@ -22,3 +18,12 @@ def test_get_own_player():
     ]
 
     assert player.get_own_player(players) == own_player
+
+def test_get_all_in_amount():
+    playerDetails = {
+        'name': 'Game On',
+        'holt_cards': [],
+        'stack': 500
+    }
+
+    assert player.get_all_in_amount(playerDetails) == 500
