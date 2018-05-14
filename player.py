@@ -21,10 +21,10 @@ class Player:
         hole_cards = own_player['hole_cards']
         print own_player
 
-        ## if card.are_card_ranks_equal(hole_cards) or card.is_card_with_rank(hole_cards, "A"):
-        #   return get_all_in_amount(own_player)
+        if card.are_card_ranks_equal(hole_cards) or card.is_card_with_rank(hole_cards, "A"):
+            return get_all_in_amount(own_player)
 
-        return 1000
+        return own_player["stack"]
 
     def showdown(self, game_state):
         pass
