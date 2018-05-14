@@ -6,7 +6,7 @@ def are_card_ranks_equal(cards):
     card_rank = cards[0]
 
     for card in cards:
-        if card.rank != card_rank:
+        if card['rank'] != card_rank:
             return False
 
     return True
@@ -14,7 +14,7 @@ def are_card_ranks_equal(cards):
 
 def is_card_with_rank(cards, rank):
     for card in cards:
-        if card.rank == rank:
+        if card['rank'] == rank:
             return True
 
-    return False;
+    return False
