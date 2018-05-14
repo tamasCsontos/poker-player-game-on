@@ -40,7 +40,7 @@ class Player:
                 else:
                     return int(game_state['big_blind'])*2
 
-            return 0
+        return 0
 
     def showdown(self, game_state):
         pass
