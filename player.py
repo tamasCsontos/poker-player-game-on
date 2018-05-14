@@ -12,22 +12,33 @@ def get_all_in_amount(player):
 
 
 class Player:
-    VERSION = "0.02b1"
+    VERSION = "0.1b"
 
     def betRequest(self, game_state):
         own_player = get_own_player(game_state['players'])
         hole_cards = own_player['hole_cards']
-
-        if card.are_card_ranks_equal(hole_cards):
+        if int(game_state['round']) < 3:
+            if card.are_card_ranks_equal(hole_cards):
+                    if card.is_card_under_ten(hole_cards):
+                        return int(game_state['big_blind'])*10
+                    else:
+                        return int(game_state['big_blind'])*2
+            elif card.is_card_with_rank(hole_cards, "A"):
                 if card.is_card_under_ten(hole_cards):
                     return int(game_state['big_blind'])*10
                 else:
                     return int(game_state['big_blind'])*2
-        elif card.is_card_with_rank(hole_cards, "A"):
-            if card.is_card_under_ten(hole_cards):
-                return int(game_state['big_blind'])*10
-            else:
-                return int(game_state['big_blind'])*2
+        else:
+            if card.are_card_ranks_equal(hole_cards):
+                    if card.is_card_under_ten(hole_cards):
+                        return game_state['current_by_in'] * 2
+                    else:
+                        return int(game_state['current_by_in']) - int(own_player['bet'])
+            elif card.is_card_with_rank(hole_cards, "A"):
+                if card.is_card_under_ten(hole_cards):
+                    return int(game_state['big_blind'])*10
+                else:
+                    return int(game_state['big_blind'])*2
 
         return 0
 
