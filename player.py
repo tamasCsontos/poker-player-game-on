@@ -1,5 +1,17 @@
 import card
 
+def am_i_big_blind(game_state):
+    #Please test if this gives back if we are the bigblind
+    if game_state['dealer'] == 4:
+        return True
+    return False
+
+
+def am_i_small_blind(game_state):
+    if game_state['dealer'] == 5:
+        return True
+    return False
+
 
 def get_own_player(players):
     for player in players:
@@ -28,7 +40,7 @@ class Player:
                     return int(game_state['big_blind'])*10
                 else:
                     return int(game_state['big_blind'])*2
-        else:
+        elif int(game_state['round']) != 1:
             if card.are_card_ranks_equal(hole_cards):
                     if card.is_card_under_ten(hole_cards):
                         return int(game_state['current_buy_in']) * 2
@@ -39,6 +51,12 @@ class Player:
                     return int(game_state['current_buy_in']) * 2
                 else:
                     return int(game_state['current_buy_in'])
+        elif am_i_small_blind(game_state):
+            if int(game_state['current_buy_in']) < int(game_state['big_blind'])*2:
+                return int(game_state['current_buy_in'])
+        elif am_i_big_blind(game_state):
+            if int(game_state['current_buy_in']) < int(game_state['big_blind'])*3:
+                return int(game_state['current_buy_in'])
         return 0
 
     def showdown(self, game_state):
