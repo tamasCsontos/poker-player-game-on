@@ -20,7 +20,6 @@ def is_card_with_rank(cards, rank):
     return False
 
 
-
 def are_card_suit_equal(cards):
     if len(cards) == 0:
         return False
@@ -32,6 +31,7 @@ def are_card_suit_equal(cards):
             return False
 
     return True
+
 
 def is_card_under_ten(cards):
     for card in cards:
