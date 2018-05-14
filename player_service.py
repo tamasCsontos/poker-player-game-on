@@ -29,10 +29,12 @@ class PlayerService(BaseHTTPServer.BaseHTTPRequestHandler):
 
         action = postvars['action'][0]
 
+
         if 'game_state' in postvars:
             game_state = json.loads(postvars['game_state'][0])
         else:
             game_state = {}
+
 
 
         response = ''
